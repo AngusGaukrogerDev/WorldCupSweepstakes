@@ -1,11 +1,19 @@
 <template>
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
-        hello
+        <label>Your team is:</label>
+        <label>{{teamName}}</label>
+        <button  class="btn btn-primary">Payment Screen</button>
+        <ul class="steps  space-x-5">
+            <li class="step step-primary">Enter Your Details</li>
+            <li class="step step-primary">Get A Random Team</li>
+            <li class="step">Make Your Payment</li>
+            <li class="step">Receive Confirmation</li>
+        </ul>
     </div>
 </template>
 
 <script setup>
-
+import { defineProps} from 'vue';
 </script>
 
 <style lang="scss" scoped>

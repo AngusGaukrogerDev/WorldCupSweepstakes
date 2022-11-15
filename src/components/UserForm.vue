@@ -1,36 +1,19 @@
 <template>
-    <div class=" flex flex-col h-screen justify-center items-center space-y-7">
-        <div class="form-control w-full max-w-xs">
-            <label class="label">
-              <span class="label-text">Name</span>
-            </label>
-            <input type="text" placeholder="Your Name Here" class="input input-bordered w-full max-w-xs" />
-        </div>
-        <div class="form-control w-full max-w-xs">
-            <label class="label">
-              <span class="label-text">Email Address</span>
-            </label>
-            <input type="text" placeholder="Your Email Here" class="input input-bordered w-full max-w-xs" />
-        </div>
-        <div class="form-control">
-            <label class="label cursor-pointer">
-              <span class="label-text">I am happy to participate in this event</span> 
-              <input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
-            </label>
-          </div>
-          <button @click="router.route('/Page2')" class="btn btn-primary">Get Your Team!</button>
-        <ul class="steps  space-x-5">
-            <li class="step step-primary">Enter Your Details</li>
-            <li class="step ">Get A Random Team</li>
-            <li class="step">Make Your Payment</li>
-            <li class="step">Receive Confirmation</li>
-        </ul>
-    </div>
+    <UserFormPage1 v-if="next==false" @next-page="next = true;" />
+    <UserFormPage2 v-if="next==true"/>
+
 </template>
 
 <script setup>
     import { useRouter } from 'vue-router'
-   const router = useRouter()
+    import UserFormPage1 from './UserFormPage1.vue';
+    import { ref } from 'vue';
+import UserFormPage2 from './UserFormPage2.vue';
+
+    let next = ref(false);
+
+
+    const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
