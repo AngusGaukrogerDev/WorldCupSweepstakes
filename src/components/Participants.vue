@@ -3,9 +3,9 @@
         <Navbar />
         <div class=" my-5 ">
             <div class="overflow-x-auto">
-                <table class="table w-full  px-5">
+                <table class="table w-full  px-5 bg-primary">
                     <!-- head -->
-                    <thead>
+                    <thead >
                     <tr>
                         <th></th>
                         <th>Name</th>
