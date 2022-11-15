@@ -1,5 +1,5 @@
 <template>
-    <div class=" flex flex-col h-screen  h-screenjustify-center items-center space-y-7">
+    <div class=" flex flex-col h-screen justify-center items-center space-y-7">
         <div class="form-control w-full max-w-xs">
             <label class="label">
               <span class="label-text">Name</span>
@@ -18,9 +18,10 @@
               <input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
             </label>
           </div>
-        <ul class="steps space-x-5">
+          <button @click="router.route('/Page2')" class="btn btn-primary">Get Your Team!</button>
+        <ul class="steps  space-x-5">
             <li class="step step-primary">Enter Your Details</li>
-            <li class="step">Get A Random Team</li>
+            <li class="step ">Get A Random Team</li>
             <li class="step">Make Your Payment</li>
             <li class="step">Receive Confirmation</li>
         </ul>
@@ -28,7 +29,8 @@
 </template>
 
 <script setup>
-
+    import { useRouter } from 'vue-router'
+   const router = useRouter()
 </script>
 
 <style lang="scss" scoped>

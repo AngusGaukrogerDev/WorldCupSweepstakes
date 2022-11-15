@@ -5,8 +5,8 @@
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
-                  <li><a>Sign Up</a></li>
-                  <li><a>Participants</a></li>
+                  <li @click="router.push('/');"><a>Sign Up</a></li>
+                  <li @click="router.push('/Participants');"><a>Participants</a></li>
                 </ul>
               </div>
           </div>
@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-
+   import { useRouter } from 'vue-router'
+   const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
