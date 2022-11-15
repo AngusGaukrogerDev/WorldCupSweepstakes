@@ -14,7 +14,22 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+import {useStore} from 'vuex';
 
+const store = useStore();
+onMounted(() => {
+        //Gets data from backend and puts it into the store
+        axios.get('http://localhost:3000/teamdata') //change to correct_url:3000/data
+        .then((response) => {
+            console.log(response); 
+            //store.dispatch('updateTeams', response.data); //calls setter in store and passes data through
+            axios.post('http://localhost:3000/teamdata', response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    });
 </script>
 
 <style lang="scss" scoped>
