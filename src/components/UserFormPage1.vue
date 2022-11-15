@@ -6,22 +6,22 @@
             <label class="label">
               <span class="label-text">Name</span>
             </label>
-            <input type="text" placeholder="Your Name Here" class="input input-bordered w-full max-w-xs" />
+            <input type="text" v-model="userName" placeholder="Your Name Here" class="input input-bordered w-full max-w-xs" />
         </div>
         <div class="form-control w-full max-w-xs">
             <label class="label">
               <span class="label-text">Email Address</span>
             </label>
-            <input type="text" placeholder="Your Email Here" class="input input-bordered w-full max-w-xs" />
+            <input type="text" v-model="userEmail" placeholder="Your Email Here" class="input input-bordered w-full max-w-xs" />
         </div>
         <div class="form-control">
             <label class="label cursor-pointer">
               <span class="label-text">I am happy to pay £3 participate in this event</span> 
-              <input type="checkbox" checked="checked" class="checkbox checkbox-primary" />
+              <input type="checkbox" v-model="agreed" checked="checked" class="checkbox checkbox-primary" />
             </label>
           </div>
-          <div class="flex row justify-between">
-            <button @click="formContinue" class="btn btn-primary">Make Your Payment</button>
+          <div  class="flex row justify-between">
+            <button v-if="agreed" @click="formContinue" class="btn btn-primary">Make Your Payment</button>
 
           </div>
         <ul class="steps  space-x-5">
@@ -35,6 +35,11 @@
 
 <script setup>
     // import { defineEmits } from 'vue';
+    import {ref} from 'vue';
+
+    let userName = ref("");
+    let userEmail = ref("");
+    let agreed = ref(false);
 
     const emits = defineEmits(['nextPage']);
 

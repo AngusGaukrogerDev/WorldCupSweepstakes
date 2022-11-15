@@ -12,9 +12,9 @@
     import Navbar from './Navbar.vue';
     import UserForm from './UserForm.vue';
 
-    const store = useStore();
+    // const store = useStore();
 
-    const name = computed(() =>  {
-        return store.state.user.name;
-    })
+    // const name = computed(() =>  {
+    //     return store.state.user.name;
+    // })
 </script>
