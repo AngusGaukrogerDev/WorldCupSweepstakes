@@ -16,20 +16,40 @@
 <script setup>
 import axios from 'axios';
 import {useStore} from 'vuex';
-
+import { onMounted, ref } from 'vue';
 const store = useStore();
+// let teamList = ref("");
 onMounted(() => {
         //Gets data from backend and puts it into the store
-        axios.get('http://localhost:3000/teamdata') //change to correct_url:3000/data
+        axios.get('http://localhost:3000/data') //change to correct_url:3000/data
         .then((response) => {
-            console.log(response); 
+            console.log(response.data.data); 
+            assignTeam(response.data.data);
             //store.dispatch('updateTeams', response.data); //calls setter in store and passes data through
-            axios.post('http://localhost:3000/teamdata', response.data);
+            
+            // console.log("Sent");
+            // .then((response) => {
+            // console.log(response);
+            // }, (error) => {
+            // console.log(error);
+            // });
+
         })
         .catch((error) => {
             console.log(error);
         })
     });
+
+function assignTeam(teamList){
+
+    const rand=Math.floor(Math.random() * teamList.length)
+    // let teamFound = teamList.find()
+    // let {ID, team, assignedUser} = teamList;
+    // teamList.forEach(ID => {
+    //     if(ID == rand)
+    // });
+    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "Random!"})
+}
 </script>
 
 <style lang="scss" scoped>
