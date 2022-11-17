@@ -2,8 +2,7 @@
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
         <label>Your team is:</label>
         <label>{{teamName}}</label>
-        <button @click="formBack" class="btn btn-primary">Back</button>
-        <button  class="btn btn-primary">Payment Screen</button>
+        <button  class="btn btn-primary">Send Email Confirmation</button>
         <ul class="steps  space-x-5">
             <li class="step step-primary">Enter Your Details</li>
             <li class="step step-primary">Make Your Payment</li>
@@ -18,6 +17,7 @@ import axios from 'axios';
 import {useStore} from 'vuex';
 import { onMounted, ref } from 'vue';
 const store = useStore();
+let teamName = ref("");
 // let teamList = ref("");
 onMounted(() => {
         //Gets data from backend and puts it into the store
@@ -45,8 +45,8 @@ function assignTeam(teamList){
     let rand=Math.floor(Math.random() * teamList.length)
     if(teamList[rand].assignedUser == "")
     {
-        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name"})
-
+        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name_example"})
+        teamName =  teamList[rand].team;
     }
     else
     {

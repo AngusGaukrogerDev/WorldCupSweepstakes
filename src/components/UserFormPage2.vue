@@ -1,7 +1,7 @@
 <template>
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
-        <!-- <label>Stripe Payment In Progress</label> -->
-        <button @click="redirect" class="btn btn-primary">Make Payment with Stripe</button>
+        <label>Once you have made your payment in the Starling pop-up window, please click below to get your team!</label>
+        <button @click="formContinue" class="btn btn-primary">Get your team!</button>
         <button @click="formBack" class="btn btn-primary">Cancel</button>
         <ul class="steps  space-x-5">
             <li class="step step-primary">Enter Your Details</li>
@@ -13,14 +13,29 @@
 </template>
 
 <script setup>
-// import { onMounted } from 'vue';
+import { onMounted } from 'vue';
 // import {loadStripe} from 'Stripe';
 // let stripe = null;
 // onMounted(async() => {
 //     stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY)
 // });
+onMounted(() => {
+    redirect();
+})
+function redirect() {
+    window.open("https://settleup.starlingbank.com/angusgaukroger?amount=3&message=Loop%20World%20Cup%20Sweepstakes%20", "Payment Link", 'height=1080,width=720');
+}
+const emits = defineEmits(['prevPage', 'nextPage']);
 
-// function redirect() {
+function formContinue() {
+
+emits('nextPage');
+}
+function formBack() {
+
+    emits('prevPage');
+
+}
 //     stripe.redirectToCheckout({
 //         successUrl: "https://localhost:4000/Success",
 //         cancelUrl: "https://localhost:4000",
@@ -32,18 +47,6 @@
 //         ],
 //         mode: "payment"
 //     })
-// }
-const emits = defineEmits(['prevPage']);
-
-function formContinue() {
-
-emits('nextPage');
-}
-function formBack() {
-
-    emits('prevPage');
-
-}
 </script>
 
 <style lang="scss" scoped>

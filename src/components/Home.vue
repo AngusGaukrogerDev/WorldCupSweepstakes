@@ -4,7 +4,7 @@
         <UserForm />
         <Footer />
         <!-- UNCOMMENT BELOW TO TEST FUNCTIONALITY OF FE - BE COMMS -->
-        <UserFormPage3 /> 
+        <!-- <UserFormPage3 />  -->
 </template>
 
 <script setup>
