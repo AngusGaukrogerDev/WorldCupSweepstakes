@@ -46,7 +46,7 @@ function assignTeam(teamList){
     if(teamList[rand].assignedUser == "")
     {
         axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name_example"})
-        teamName =  teamList[rand].team;
+        teamName.value =  teamList[rand].team;
     }
     else
     {

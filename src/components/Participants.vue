@@ -3,7 +3,6 @@
         <Navbar />
         <div class=" my-5 ">
             <div class="overflow-x-auto">
-                <h2> from be{{assignedList}}</h2>
                 <table class="table w-full  px-5 bg-primary">
                     <!-- head -->
                     <thead >
@@ -43,7 +42,7 @@ onMounted(() => {
         axios.get('http://localhost:3000/data') //change to correct_url:3000/data
         .then((response) => {
             console.log(response.data.data);
-            assignedList = response.data.data;
+            assignedList.value = response.data.data;
             //store.dispatch('updateTeams', response.data); //calls setter in store and passes data throug
 
         })

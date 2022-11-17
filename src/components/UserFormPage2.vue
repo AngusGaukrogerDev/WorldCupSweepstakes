@@ -1,5 +1,6 @@
 <template>
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
+        <h2>Hello {{name}}</h2>
         <label>Once you have made your payment in the Starling pop-up window, please click below to get your team!</label>
         <button @click="formContinue" class="btn btn-primary">Get your team!</button>
         <button @click="formBack" class="btn btn-primary">Cancel</button>
@@ -13,12 +14,20 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import {useStore} from 'vuex';
+
+const store = useStore();
+
 // import {loadStripe} from 'Stripe';
 // let stripe = null;
 // onMounted(async() => {
 //     stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY)
 // });
+const name = computed(() =>  {
+        return store.state.user.name;
+    })
+
 onMounted(() => {
     redirect();
 })

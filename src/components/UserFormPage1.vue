@@ -36,6 +36,9 @@
 <script setup>
     // import { defineEmits } from 'vue';
     import {ref} from 'vue';
+    import {useStore} from 'vuex';
+
+    const store = useStore();
 
     let userName = ref("");
     let userEmail = ref("");
@@ -44,6 +47,8 @@
     const emits = defineEmits(['nextPage']);
 
     function formContinue() {
+        store.dispatch('SET_USER', userName);
+        store.dispatch('SET_EMAIL', userEmail);
 
         emits('nextPage');
     }

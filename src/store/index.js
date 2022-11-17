@@ -1,9 +1,9 @@
 import {createStore} from 'vuex';
-import teams from './modules/teams';
+import user from './modules/user';
 
 const store = createStore({
     modules: {
-        teams,
+        user,
     },
 })
 
