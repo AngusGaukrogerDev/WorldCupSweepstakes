@@ -14,8 +14,11 @@ export default {
         }
     },
     actions: {
-        saveName({commit}, data) {
-            commit('SET_NAME', data)
-        }
+        updateName({commit}, data){
+            commit('SET_NAME', data);
+        },
+        updateEmail({commit}, data){
+            commit('SET_EMAIL', data);
+        },
     },
 }

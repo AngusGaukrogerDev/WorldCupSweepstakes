@@ -15,9 +15,13 @@
 <script setup>
 import axios from 'axios';
 import {useStore} from 'vuex';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed} from 'vue';
 const store = useStore();
 let teamName = ref("");
+const name = computed(() =>  {
+        return store.state.user.name;
+    })
+
 // let teamList = ref("");
 onMounted(() => {
         //Gets data from backend and puts it into the store
@@ -45,12 +49,12 @@ function assignTeam(teamList){
     let rand=Math.floor(Math.random() * teamList.length)
     if(teamList[rand].assignedUser == "")
     {
-        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name_example"})
+        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
         teamName.value =  teamList[rand].team;
     }
     else
     {
-        rand=Math.floor(Math.random() * teamList.length)
+        assignTeam(teamList);
 
 
     }

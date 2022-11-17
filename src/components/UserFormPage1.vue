@@ -47,8 +47,8 @@
     const emits = defineEmits(['nextPage']);
 
     function formContinue() {
-        store.dispatch('SET_USER', userName);
-        store.dispatch('SET_EMAIL', userEmail);
+        store.dispatch('updateName', userName);
+        store.dispatch('updateEmail', userEmail);
 
         emits('nextPage');
     }
