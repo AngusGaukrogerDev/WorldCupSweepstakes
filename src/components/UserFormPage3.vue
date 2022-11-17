@@ -45,19 +45,21 @@ onMounted(() => {
     });
 
 function assignTeam(teamList){
-
+    // let newArray = ref("");
+    
+    for(let x; x<=teamList.length; x++)
+    {
+        if(teamList[x].assignedUser === "")
+        {
+            teamList.slice(x);
+        }       
+    }
+    console.log(teamList);
     let rand=Math.floor(Math.random() * teamList.length)
-    if(teamList[rand].assignedUser == "")
-    {
-        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
-        teamName.value =  teamList[rand].team;
-    }
-    else
-    {
-        assignTeam(teamList);
 
+    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
+    teamName.value =  teamList[rand].team;
 
-    }
 }
 </script>
 
