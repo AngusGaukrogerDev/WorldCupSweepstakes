@@ -43,11 +43,17 @@ onMounted(() => {
 function assignTeam(teamList){
 
     let rand=Math.floor(Math.random() * teamList.length)
-    // while(teamList[rand].assignedUser === "")
-    // {
-    //     rand=Math.floor(Math.random() * teamList.length)
-    // }
-    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name"})
+    if(teamList[rand].assignedUser == "")
+    {
+        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name"})
+
+    }
+    else
+    {
+        rand=Math.floor(Math.random() * teamList.length)
+
+
+    }
 }
 </script>
 
