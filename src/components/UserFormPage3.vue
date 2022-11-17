@@ -42,13 +42,12 @@ onMounted(() => {
 
 function assignTeam(teamList){
 
-    const rand=Math.floor(Math.random() * teamList.length)
-    // let teamFound = teamList.find()
-    // let {ID, team, assignedUser} = teamList;
-    // teamList.forEach(ID => {
-    //     if(ID == rand)
-    // });
-    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "Random!"})
+    let rand=Math.floor(Math.random() * teamList.length)
+    // while(teamList[rand].assignedUser === "")
+    // {
+    //     rand=Math.floor(Math.random() * teamList.length)
+    // }
+    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": "name"})
 }
 </script>
 

@@ -3,6 +3,7 @@
         <Navbar />
         <div class=" my-5 ">
             <div class="overflow-x-auto">
+                <h2> from be{{assignedList}}</h2>
                 <table class="table w-full  px-5 bg-primary">
                     <!-- head -->
                     <thead >
@@ -15,9 +16,13 @@
                     </thead>
                     <tbody>
                     <!-- populate table -->
-                    <!-- <tr v-for="item in store.state.stock.stock.data" class="no__bullets"> -->
+                    <tr v-for="item in assignedList" class="no__bullets">
+                        <th></th>
+                        <th>{{item.team}}</th>
+                        <th>{{item.assignedUser}}</th>
+                        <th> </th>
                         <!-- <OrderItem @price="basketPrice(item)" @cumDir="direction = $event;" :ItemName="item.name" :ItemPrice="item.price" :ItemStock="item.stock" />     -->
-                    <!-- </tr> -->
+                    </tr>
                     </tbody>
                     
                 </table>
@@ -29,8 +34,23 @@
 
 <script setup>
 import Navbar from './Navbar.vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
+let assignedList = ref("");
+onMounted(() => {
+        //Gets data from backend and puts it into the store
+        axios.get('http://localhost:3000/data') //change to correct_url:3000/data
+        .then((response) => {
+            console.log(response.data.data);
+            assignedList = response.data.data;
+            //store.dispatch('updateTeams', response.data); //calls setter in store and passes data throug
 
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    });
 </script>
 
 <style lang="scss" scoped>
