@@ -2,7 +2,13 @@
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
         <h2>Hello {{name}}</h2>
         <label>Once you have made your payment in the Starling pop-up window, please click below to get your team!</label>
-        <button @click="formContinue" class="btn btn-primary">Get your team!</button>
+        <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">I have sent my payment!</span> 
+              <input type="checkbox" v-model="agreed" checked="checked" class="checkbox checkbox-primary" />
+            </label>
+          </div>
+        <button v-if="agreed" @click="formContinue" class="btn btn-primary">Get your team!</button>
         <button @click="formBack" class="btn btn-primary">Cancel</button>
         <ul class="steps  space-x-5">
             <li class="step step-primary">Enter Your Details</li>
@@ -14,10 +20,11 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import {useStore} from 'vuex';
 
 const store = useStore();
+let agreed = ref(false);
 
 // import {loadStripe} from 'Stripe';
 // let stripe = null;
