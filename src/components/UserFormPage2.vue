@@ -45,17 +45,7 @@ function formBack() {
     emits('prevPage');
 
 }
-//     stripe.redirectToCheckout({
-//         successUrl: "https://localhost:4000/Success",
-//         cancelUrl: "https://localhost:4000",
-//         lineItems: [
-//             {
-//                 price: "price_1M4VuZFWSXMa4XY2Y1ZpOj4l",
-//                 quantity: 1
-//             }
-//         ],
-//         mode: "payment"
-//     })
+
 </script>
 
 <style lang="scss" scoped>

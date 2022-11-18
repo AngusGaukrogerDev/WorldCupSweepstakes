@@ -2,7 +2,7 @@
     <div class=" flex flex-col h-screen justify-center items-center space-y-7">
         <label>Your team is:</label>
         <label>{{teamName}}</label>
-        <button  class="btn btn-primary">Send Email Confirmation</button>
+        <button @click="sendEmail()" class="btn btn-primary">Send Email Confirmation</button>
         <ul class="steps  space-x-5">
             <li class="step step-primary">Enter Your Details</li>
             <li class="step step-primary">Make Your Payment</li>
@@ -15,8 +15,10 @@
 <script setup>
 import axios from 'axios';
 import {useStore} from 'vuex';
+import { useRouter } from 'vue-router'
 import { onMounted, ref, computed} from 'vue';
 const store = useStore();
+const router = useRouter();
 let teamName = ref("");
 const name = computed(() =>  {
         return store.state.user.name;
@@ -49,15 +51,37 @@ function assignTeam(teamList){
     // console.log(teamList);
     
     let rand=Math.floor(Math.random() * teamList.length)
+    let x = 0;
 
     while(teamList[rand].assignedUser != "")
     {
+        if(x==32)
+        {
+            break;
+        }
+        x++;
         rand=Math.floor(Math.random() * teamList.length);
     }
-    axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
-    teamName.value =  teamList[rand].team;
+    if(x<32)
+    {
+        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
+        teamName.value =  teamList[rand].team;
+    }
+    else
+    {
+        teamName.value =  "No more teams left!";
+    }
 
 }
+function sendEmail() {
+        let formData = {
+            name: store.state.user.name,
+            email: store.state.user.email,
+            team: teamName.value    
+        }
+        axios.post('http://localhost:3000/sendemail', {"name": formData.name, "email": formData.email, "team": formData.team });
+        router.push('/Participants');
+    }
 </script>
 
 <style lang="scss" scoped>
