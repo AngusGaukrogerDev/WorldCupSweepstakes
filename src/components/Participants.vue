@@ -8,8 +8,8 @@
                     <thead >
                     <tr>
                         <th></th>
-                        <th>Name</th>
                         <th>Country</th>
+                        <th>Name</th>
                         <th></th>
                     </tr>
                     </thead>

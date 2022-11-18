@@ -1,5 +1,5 @@
 <template>
-    <div class=" flex flex-col h-screen justify-center items-center space-y-7">
+    <div v-if="available" class=" flex flex-col h-screen justify-center items-center space-y-7">
         <h1 class=" text-4xl text-center">Welcome to the Loop World Cup Sweepstakes</h1>
         <!-- <h1 class=" text-2xl text-center">Current Prize Pool is {{sweepstake}}</h1> -->
         <div class="form-control w-full max-w-xs">
@@ -31,7 +31,7 @@
             <li class="step">Receive Confirmation</li>
         </ul>
     </div>
-    <div class=" flex flex-col h-screen justify-center items-center space-y-7">
+    <div v-if="available==false" class=" flex flex-col h-screen justify-center items-center space-y-7">
       <h1 class=" text-4xl text-center">Welcome to the Loop World Cup Sweepstakes</h1>
       <h1 class=" text-2xl text-center">No more teams available</h1>
     </div>
@@ -39,15 +39,16 @@
 
 <script setup>
     // import { defineEmits } from 'vue';
-    import {ref} from 'vue';
+    import {ref, onMounted} from 'vue';
     import {useStore} from 'vuex';
+  import axios from 'axios';
 
     const store = useStore();
 
     let userName = ref("");
     let userEmail = ref("");
     let agreed = ref(false);
-    let available = ref(false);
+    let available = ref(true);
 
     const emits = defineEmits(['nextPage']);
 
@@ -57,43 +58,50 @@
 
         emits('nextPage');
     }
-    // onMounted(() => {
-    //     //Gets data from backend and puts it into the store
-    //     axios.get('http://localhost:3000/data') //change to correct_url:3000/data
-    //     .then((response) => {
-    //         console.log(response.data.data); 
-    //         checkTeamsAvailable(response.data.data);
-    //         //store.dispatch('updateTeams', response.data); //calls setter in store and passes data through
+    onMounted(() => {
+        //Gets data from backend and puts it into the store
+        axios.get('http://localhost:3000/data') //change to correct_url:3000/data
+        .then((response) => {
+            console.log(response.data.data); 
+            checkTeamsAvailable(response.data.data);
+            //store.dispatch('updateTeams', response.data); //calls setter in store and passes data through
             
-    //         // console.log("Sent");
-    //         // .then((response) => {
-    //         // console.log(response);
-    //         // }, (error) => {
-    //         // console.log(error);
-    //         // });
+            // console.log("Sent");
+            // .then((response) => {
+            // console.log(response);
+            // }, (error) => {
+            // console.log(error);
+            // });
 
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     })
-    // });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    });
     function checkTeamsAvailable(teamData){
-      // let i = 0;
-      // for(let x = 0; x<teamData.length; x++)
-      // {
-      //   if(teamList[x].assignedUser != "")
-      //   {
-      //     i++;
-      //   }
-      // }
-      // if(i==32)
-      // {
-      //   available = false
-      // }
-      // else
-      // {
-      //   available = true;
-      // }
+      let i = 0;
+      for(let x = 0; x<teamData.length; x++)
+      {
+        if(teamData[x].assignedUser != "")
+        {
+          i++;
+          console.log(i)
+
+          if(i==32)
+          {
+            available.value = false
+            console.log(available)
+
+          }
+          else
+          {
+            available.value = true;
+            console.log(available)
+
+          }
+        }
+      }
+     
     }
 </script>
 

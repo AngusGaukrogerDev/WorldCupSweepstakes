@@ -51,6 +51,7 @@ function assignTeam(teamList){
     // console.log(teamList);
     
     let rand=Math.floor(Math.random() * teamList.length)
+
     let x = 0;
 
     while(teamList[rand].assignedUser != "")
@@ -59,8 +60,10 @@ function assignTeam(teamList){
         {
             break;
         }
-        x++;
         rand=Math.floor(Math.random() * teamList.length);
+        x++;
+        
+
     }
     if(x<32)
     {

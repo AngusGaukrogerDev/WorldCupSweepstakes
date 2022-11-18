@@ -1,5 +1,5 @@
 <template>
-        <div class="navbar navbar-center bg-primary">
+        <div class="navbar navbar-center bg-primary" >
             <div class="flex-1">
               <a class="btn btn-ghost normal-case text-xl">Loop Sweepstakes</a>
             </div>
