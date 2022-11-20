@@ -27,7 +27,7 @@ const name = computed(() =>  {
 // let teamList = ref("");
 onMounted(() => {
         //Gets data from backend and puts it into the store
-        axios.get('https://195.201.227.74:3000/data') //change to correct_url:3000/data
+        axios.get('https://sweep-back.brth.uk:3000/data') //change to correct_url:3000/data
         .then((response) => {
             console.log(response.data.data); 
             assignTeam(response.data.data);
@@ -67,7 +67,7 @@ function assignTeam(teamList){
     }
     if(x<32)
     {
-        axios.post('https://195.201.227.74:3000//assigned', {"team": teamList[rand].team, "assignedUser": name.value})
+        axios.post('https://sweep-back.brth.uk:3000//assigned', {"team": teamList[rand].team, "assignedUser": name.value})
         teamName.value =  teamList[rand].team;
     }
     else
@@ -82,7 +82,7 @@ function sendEmail() {
             email: store.state.user.email,
             team: teamName.value    
         }
-        axios.post('https://195.201.227.74:3000//sendemail', {"name": formData.name, "email": formData.email, "team": formData.team });
+        axios.post('https://sweep-back.brth.uk:3000//sendemail', {"name": formData.name, "email": formData.email, "team": formData.team });
         router.push('/Participants');
     }
 </script>

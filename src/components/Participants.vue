@@ -39,7 +39,7 @@ import axios from 'axios';
 let assignedList = ref("");
 onMounted(() => {
         //Gets data from backend and puts it into the store
-        axios.get('https://195.201.227.74:3000/data') //change to correct_url:3000/data
+        axios.get('https://sweep-back.brth.uk:3000/data') //change to correct_url:3000/data
         .then((response) => {
             console.log(response.data.data);
             assignedList.value = response.data.data;
