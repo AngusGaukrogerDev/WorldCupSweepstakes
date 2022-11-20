@@ -60,7 +60,7 @@
     }
     onMounted(() => {
         //Gets data from backend and puts it into the store
-        axios.get('https://sweep-back.brth.uk:3000/data') //change to correct_url:3000/data
+        axios.get('https://localhost:3000/data') //change to correct_url:3000/data
         .then((response) => {
             console.log(response.data.data); 
             checkTeamsAvailable(response.data.data);
