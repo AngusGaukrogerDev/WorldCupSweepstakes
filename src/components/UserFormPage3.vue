@@ -67,7 +67,7 @@ function assignTeam(teamList){
     }
     if(x<32)
     {
-        axios.post('http://localhost:3000//assigned', {"team": teamList[rand].team, "assignedUser": name.value})
+        axios.post('http://localhost:3000/assigned', {"team": teamList[rand].team, "assignedUser": name.value})
         teamName.value =  teamList[rand].team;
     }
     else
@@ -82,7 +82,7 @@ function sendEmail() {
             email: store.state.user.email,
             team: teamName.value    
         }
-        axios.post('http://localhost:3000//sendemail', {"name": formData.name, "email": formData.email, "team": formData.team });
+        axios.post('http://localhost:3000/sendemail', {"name": formData.name, "email": formData.email, "team": formData.team });
         router.push('/Participants');
     }
 </script>
